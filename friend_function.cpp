@@ -1,5 +1,4 @@
-#include<iostream>
-using namespace std;
+
 //class Base
 //{
 //	private:
@@ -20,14 +19,17 @@ using namespace std;
 //	Base obj(10,5);
 //	add(obj);
 //}
+
+#include<iostream>
+using namespace std;
+
 class B;
+
 class A
 {
-	private:
-		int a;
 	public:
-		A(int n=0):a(n){}
-		friend void max(A, B);
+		void showB(B&);
+		
 };
 
 class B
@@ -35,24 +37,18 @@ class B
 	private:
 		int b;
 	public:
-		B(int n=0):b(n){}
-		friend void max(A, B);
+		B(){ b=0; }
+		friend void A::showB(B& x);
 };
-void max(A obj1, B obj2)
+
+void A::showB(B& obj)
 {
-	if(obj1.a > obj2.b)
-	{
-		cout<<"a is "<<obj1.a<<endl;
-	}
-	else
-	{
-		cout<<"b is "<<obj2.b<<endl;
-	}
+	cout<<"B::b "<<obj.b;
 }
 
 int main()
 {
-	A obj1(10);
-	B obj2(5);
-	max(obj1, obj2);
+	A obj1;
+	B obj2;
+	obj1.showB(obj2);
 }
